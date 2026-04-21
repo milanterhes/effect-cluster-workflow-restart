@@ -1,0 +1,21 @@
+{
+	"name": "effect-workflow-crash-recovery-repro",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"start": "tsx src/main.ts",
+		"db:up": "docker compose up -d",
+		"db:down": "docker compose down",
+		"db:reset": "docker exec effect-repro-pg psql -U postgres -d repro -c 'DELETE FROM cluster_replies; DELETE FROM cluster_messages;'",
+		"db:clean": "docker compose down -v && docker compose up -d"
+	},
+	"dependencies": {
+		"@effect/sql-pg": "4.0.0-beta.52",
+		"effect": "4.0.0-beta.52"
+	},
+	"devDependencies": {
+		"@types/node": "^22.0.0",
+		"tsx": "^4.19.4",
+		"typescript": "^5.9.3"
+	}
+}
